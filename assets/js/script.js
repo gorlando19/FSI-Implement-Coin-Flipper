@@ -1,27 +1,72 @@
-// TODO: Declare any global variables we need
+//declaring variables
+let totalFlips = 0
+let headsNumber = 0
+let tailNumber = 0
+let headPercentage = 0
+let tailPercentage = 0
+let statusMessage = null
+let image = null
 
 
-document.addEventListener('DOMContentLoaded', function () {
-    // This is just a sanity check to make sure your JavaScript script is getting loaded
-    // You can remove it once you see it in your browser console in the developer tools
-    console.log('Hi')
+//get html elements
+let coinImage = document.getElementById('penny-image')
+let flipBtn = document.getElementById('flip')
+let clearBtn = document.getElementById('clear')
+let score_HeadNumber = document.getElementById('heads')
+let score_HeadNumberPerc = document.getElementById('heads-percent')
+let score_TailNumber = document.getElementById('tails')
+let score_TailNumberPerc = document.getElementById('tails-percent')
+let score_statusMessage = document.querySelector('.message-container')
 
-    // TODO: Add event listener and handler for flip and clear buttons
+//Functions
+function init() {
+    flipoutcome = 0
+    headsNumber = 0
+    tailNumber = 0
+    headPercentage = 0
+    tailPercentage = 0
+    statusMessage = "Let's Get Rolling!"
+    image ='./assets/images/penny-heads.jpg'
+}
+function isEven(n) {
+    n = Number(n);
+    return n === 0 || !!(n && !(n%2));
+  }
 
-    // Flip Button Click Handler
-        // TODO: Determine flip outcome
-        // TODO: Update image and status message in the DOM
+function render(){
+    score_statusMessage.innerHTML = statusMessage
+    score_HeadNumber.innerHTML = headsNumber
+    score_HeadNumberPerc.innerHTML = headPercentage +'%'
+    score_TailNumber.innerHTML = tailNumber
+    score_TailNumberPerc.innerHTML = tailPercentage +'%'
+    coinImage.setAttribute('src' , image)
+}
 
-        // Update the scorboard
-        // TODO: Calculate the total number of rolls/flips
-        // Make variables to track the percentages of heads and tails
-        // TODO: Use the calculated total to calculate the percentages
-        // HINT: Make sure not to divide by 0! (if total is 0, percent will be 0 as well)
-        // TODO: Update the display of each table cell
+//Init
+init();
+render();
 
+//listeners
+flipBtn.addEventListener('click', function(){
+    if (isEven(Math.round(Math.random() * 100))) {
+        headsNumber++
+        image ='./assets/images/penny-heads.jpg'
+        statusMessage='You Flipped Heads!'
+    } else {
+        tailNumber++
+        image='./assets/images/penny-tails.jpg'
+        statusMessage='You Flipped Tails!'
+    }
+    
+    totalFlips = headsNumber + tailNumber
+    if(totalFlips>0) {
+        headPercentage = Math.round(headsNumber/totalFlips*100)
+        tailPercentage = Math.round(tailNumber/totalFlips*100)
+    }
+    render()  
+})
 
-    // Clear Button Click Handler
-        // TODO: Reset global variables to 0
-        // TODO: Update the scoreboard (same logic as in flip button click handler)
-
+clearBtn.addEventListener('click', function(){
+    init()
+    render()
 })

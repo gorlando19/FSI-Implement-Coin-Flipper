@@ -8,15 +8,26 @@
 </head>
 <body>
     <main>
+        <!-- <div>
+            <button id="choseGame">Dice instead?</button>
+        </div>
+        <br> -->
         <H1>Penny Flip Game</H1>
         <div>
-            <div>Penny Image Display, Button Controls, and Status Message</div>
+            <img id="penny-image" src="assets/images/penny-heads.jpg" alt="penny image">
+            
+            <div>
+                <button id ="flip">Flip The Penny</button>
+                <button id ="clear">Clear Scoreboard</button>
+            </div>
+            <!-- <div>Penny Image Display, Button Controls, and Status Message</div> -->
             <hr>
+            <p class="message-container">Let's Get Rolling!</p>
             <div>
                 <h2>Scoreboard</h2>
                 <table>
                     <thead>
-                        <tr>
+                        <tr id="scoreBoardLineHead">
                             <th>Number of Heads</th>
                             <th>Percentage Heads</th>
                             <th>Number of Tails</th>
@@ -24,7 +35,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr id="scoreBoardLine">
                             <td id="heads">0</td>
                             <td id="heads-percent">0%</td>
                             <td id="tails">0</td>
